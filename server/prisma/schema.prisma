@@ -1,0 +1,102 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  email     String?  @unique
+  firstName String?
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Groom {
+  age            Int?
+  createdAt      DateTime                 @default(now())
+  diet           EnumGroomDiet?
+  drinkingHabits EnumGroomDrinkingHabits?
+  educationLevel String?
+  email          String?
+  ethnicity      String?
+  familyDetails  String?
+  height         Float?
+  hobbies        String?
+  id             String                   @id @default(auto()) @map("_id") @db.ObjectId
+  interests      String?
+  languageSpoken String?
+  location       String?
+  maritalStatus  EnumGroomMaritalStatus?
+  name           String?
+  occupation     String?
+  phoneNumber    String?
+  religion       String?
+  smokingHabits  EnumGroomSmokingHabits?
+  updatedAt      DateTime                 @updatedAt
+  weight         Float?
+}
+
+model Bride {
+  age            Int?
+  createdAt      DateTime                 @default(now())
+  diet           EnumBrideDiet?
+  drinkingHabits EnumBrideDrinkingHabits?
+  educationLevel String?
+  email          String?
+  ethnicity      String?
+  familyDetails  String?
+  height         Float?
+  hobbies        String?
+  id             String                   @id @default(auto()) @map("_id") @db.ObjectId
+  interests      String?
+  languageSpoken String?
+  location       String?
+  maritalStatus  EnumBrideMaritalStatus?
+  name           String?
+  occupation     String?
+  phoneNumber    String?
+  religion       String?
+  smokingHabits  EnumBrideSmokingHabits?
+  updatedAt      DateTime                 @updatedAt
+  weight         Float?
+}
+
+enum EnumGroomDiet {
+  Option1
+}
+
+enum EnumGroomDrinkingHabits {
+  Option1
+}
+
+enum EnumGroomMaritalStatus {
+  Option1
+}
+
+enum EnumGroomSmokingHabits {
+  Option1
+}
+
+enum EnumBrideDiet {
+  Option1
+}
+
+enum EnumBrideDrinkingHabits {
+  Option1
+}
+
+enum EnumBrideMaritalStatus {
+  Option1
+}
+
+enum EnumBrideSmokingHabits {
+  Option1
+}
