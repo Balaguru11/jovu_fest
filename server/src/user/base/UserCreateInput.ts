@@ -11,10 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional } from "class-validator";
+import { IsString, IsOptional, ValidateNested } from "class-validator";
+import { RefreshTokenCreateNestedManyWithoutUsersInput } from "./RefreshTokenCreateNestedManyWithoutUsersInput";
+import { Type } from "class-transformer";
 import { IsJSONValue } from "../../validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { SubscriptionCreateNestedManyWithoutUsersInput } from "./SubscriptionCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
@@ -60,11 +63,35 @@ class UserCreateInput {
   password!: string;
 
   @ApiProperty({
+    required: false,
+    type: () => RefreshTokenCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => RefreshTokenCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => RefreshTokenCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  refreshTokens?: RefreshTokenCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
     required: true,
   })
   @IsJSONValue()
   @Field(() => GraphQLJSON)
   roles!: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: () => SubscriptionCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => SubscriptionCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => SubscriptionCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  subscriptions?: SubscriptionCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
     required: true,

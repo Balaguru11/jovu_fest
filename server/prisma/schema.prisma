@@ -8,15 +8,17 @@ generator client {
 }
 
 model User {
-  createdAt DateTime @default(now())
-  email     String?  @unique
-  firstName String?
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  lastName  String?
-  password  String
-  roles     Json
-  updatedAt DateTime @updatedAt
-  username  String   @unique
+  createdAt     DateTime       @default(now())
+  email         String?        @unique
+  firstName     String?
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  lastName      String?
+  password      String
+  refreshTokens RefreshToken[]
+  roles         Json
+  subscriptions Subscription[]
+  updatedAt     DateTime       @updatedAt
+  username      String         @unique
 }
 
 model Groom {
@@ -69,6 +71,38 @@ model Bride {
   weight         Float?
 }
 
+model Subscription {
+  createdAt DateTime                @default(now())
+  endDate   DateTime?
+  id        String                  @id @default(auto()) @map("_id") @db.ObjectId
+  startDate DateTime?
+  status    EnumSubscriptionStatus?
+  updatedAt DateTime                @updatedAt
+  user      User?                   @relation(fields: [userId], references: [id])
+  userId    String?                 @db.ObjectId
+}
+
+model ChatMessage {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  message   String?
+  receiver  String?
+  sender    String?
+  timestamp DateTime?
+  updatedAt DateTime  @updatedAt
+}
+
+model RefreshToken {
+  createdAt  DateTime  @default(now())
+  device     String?
+  expiryDate DateTime?
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  token      String?
+  updatedAt  DateTime  @updatedAt
+  user       User?     @relation(fields: [userId], references: [id])
+  userId     String?   @db.ObjectId
+}
+
 enum EnumGroomDiet {
   Option1
 }
@@ -98,5 +132,9 @@ enum EnumBrideMaritalStatus {
 }
 
 enum EnumBrideSmokingHabits {
+  Option1
+}
+
+enum EnumSubscriptionStatus {
   Option1
 }

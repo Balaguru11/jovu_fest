@@ -2,6 +2,9 @@ import { Module } from "@nestjs/common";
 import { UserModule } from "./user/user.module";
 import { GroomModule } from "./groom/groom.module";
 import { BrideModule } from "./bride/bride.module";
+import { SubscriptionModule } from "./subscription/subscription.module";
+import { ChatMessageModule } from "./chatMessage/chatMessage.module";
+import { RefreshTokenModule } from "./refreshToken/refreshToken.module";
 import { SearchBrideModule } from "./SearchBride/searchbride.module";
 import { SearchGroomModule } from "./SearchGroom/searchgroom.module";
 import { HealthModule } from "./health/health.module";
@@ -24,6 +27,9 @@ import { AuthModule } from "./auth/auth.module";
     UserModule,
     GroomModule,
     BrideModule,
+    SubscriptionModule,
+    ChatMessageModule,
+    RefreshTokenModule,
     SearchBrideModule,
     SearchGroomModule,
     HealthModule,

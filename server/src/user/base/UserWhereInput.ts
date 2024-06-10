@@ -13,8 +13,10 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
+import { RefreshTokenListRelationFilter } from "../../refreshToken/base/RefreshTokenListRelationFilter";
+import { SubscriptionListRelationFilter } from "../../subscription/base/SubscriptionListRelationFilter";
 
 @InputType()
 class UserWhereInput {
@@ -61,6 +63,30 @@ class UserWhereInput {
     nullable: true,
   })
   lastName?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => RefreshTokenListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => RefreshTokenListRelationFilter)
+  @IsOptional()
+  @Field(() => RefreshTokenListRelationFilter, {
+    nullable: true,
+  })
+  refreshTokens?: RefreshTokenListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => SubscriptionListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => SubscriptionListRelationFilter)
+  @IsOptional()
+  @Field(() => SubscriptionListRelationFilter, {
+    nullable: true,
+  })
+  subscriptions?: SubscriptionListRelationFilter;
 
   @ApiProperty({
     required: false,

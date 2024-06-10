@@ -17,6 +17,18 @@ import { BrideList } from "./bride/BrideList";
 import { BrideCreate } from "./bride/BrideCreate";
 import { BrideEdit } from "./bride/BrideEdit";
 import { BrideShow } from "./bride/BrideShow";
+import { SubscriptionList } from "./subscription/SubscriptionList";
+import { SubscriptionCreate } from "./subscription/SubscriptionCreate";
+import { SubscriptionEdit } from "./subscription/SubscriptionEdit";
+import { SubscriptionShow } from "./subscription/SubscriptionShow";
+import { ChatMessageList } from "./chatMessage/ChatMessageList";
+import { ChatMessageCreate } from "./chatMessage/ChatMessageCreate";
+import { ChatMessageEdit } from "./chatMessage/ChatMessageEdit";
+import { ChatMessageShow } from "./chatMessage/ChatMessageShow";
+import { RefreshTokenList } from "./refreshToken/RefreshTokenList";
+import { RefreshTokenCreate } from "./refreshToken/RefreshTokenCreate";
+import { RefreshTokenEdit } from "./refreshToken/RefreshTokenEdit";
+import { RefreshTokenShow } from "./refreshToken/RefreshTokenShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -63,6 +75,27 @@ const App = (): React.ReactElement => {
           edit={BrideEdit}
           create={BrideCreate}
           show={BrideShow}
+        />
+        <Resource
+          name="Subscription"
+          list={SubscriptionList}
+          edit={SubscriptionEdit}
+          create={SubscriptionCreate}
+          show={SubscriptionShow}
+        />
+        <Resource
+          name="ChatMessage"
+          list={ChatMessageList}
+          edit={ChatMessageEdit}
+          create={ChatMessageCreate}
+          show={ChatMessageShow}
+        />
+        <Resource
+          name="RefreshToken"
+          list={RefreshTokenList}
+          edit={RefreshTokenEdit}
+          create={RefreshTokenCreate}
+          show={RefreshTokenShow}
         />
       </Admin>
     </div>
