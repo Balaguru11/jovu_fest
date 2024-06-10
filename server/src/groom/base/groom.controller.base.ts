@@ -274,4 +274,38 @@ export class GroomControllerBase {
       throw error;
     }
   }
+
+  @common.Get("/grooms/search")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async SearchGrooms(
+    @common.Body()
+    body: string
+  ): Promise<string[]> {
+    return this.service.SearchGrooms(body);
+  }
+
+  @common.Get("/grooms/:id")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async ViewGroom(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.ViewGroom(body);
+  }
 }

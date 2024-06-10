@@ -44,4 +44,10 @@ export class BrideServiceBase {
   ): Promise<PrismaBride> {
     return this.prisma.bride.delete(args);
   }
+  async SearchBrides(args: string): Promise<string[]> {
+    throw new Error("Not implemented");
+  }
+  async ViewBride(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
 }

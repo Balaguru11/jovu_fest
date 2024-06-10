@@ -274,4 +274,38 @@ export class BrideControllerBase {
       throw error;
     }
   }
+
+  @common.Get("/brides/search")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async SearchBrides(
+    @common.Body()
+    body: string
+  ): Promise<string[]> {
+    return this.service.SearchBrides(body);
+  }
+
+  @common.Get("/brides/:id")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async ViewBride(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.ViewBride(body);
+  }
 }

@@ -137,4 +137,20 @@ export class BrideResolverBase {
       throw error;
     }
   }
+
+  @graphql.Query(() => [String])
+  async SearchBrides(
+    @graphql.Args()
+    args: string
+  ): Promise<string[]> {
+    return this.service.SearchBrides(args);
+  }
+
+  @graphql.Query(() => String)
+  async ViewBride(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.ViewBride(args);
+  }
 }

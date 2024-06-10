@@ -137,4 +137,20 @@ export class GroomResolverBase {
       throw error;
     }
   }
+
+  @graphql.Query(() => [String])
+  async SearchGrooms(
+    @graphql.Args()
+    args: string
+  ): Promise<string[]> {
+    return this.service.SearchGrooms(args);
+  }
+
+  @graphql.Query(() => String)
+  async ViewGroom(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.ViewGroom(args);
+  }
 }

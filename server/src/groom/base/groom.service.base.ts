@@ -44,4 +44,10 @@ export class GroomServiceBase {
   ): Promise<PrismaGroom> {
     return this.prisma.groom.delete(args);
   }
+  async SearchGrooms(args: string): Promise<string[]> {
+    throw new Error("Not implemented");
+  }
+  async ViewGroom(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
 }

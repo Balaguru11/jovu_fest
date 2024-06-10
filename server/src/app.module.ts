@@ -2,6 +2,8 @@ import { Module } from "@nestjs/common";
 import { UserModule } from "./user/user.module";
 import { GroomModule } from "./groom/groom.module";
 import { BrideModule } from "./bride/bride.module";
+import { SearchBrideModule } from "./SearchBride/searchbride.module";
+import { SearchGroomModule } from "./SearchGroom/searchgroom.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -22,6 +24,8 @@ import { AuthModule } from "./auth/auth.module";
     UserModule,
     GroomModule,
     BrideModule,
+    SearchBrideModule,
+    SearchGroomModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
